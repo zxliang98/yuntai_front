@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <yuntai-tab-bar></yuntai-tab-bar>
+    <router-view :style="this.$route.name!=='home'?'margin-top:60px':''"></router-view>
   </div>
 </template>
 
