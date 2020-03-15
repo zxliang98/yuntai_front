@@ -22,8 +22,8 @@ import imgBanner2 from '@/assets/imgs/banner2.jpg'
 import imgBanner3 from '@/assets/imgs/banner3.jpg'
 import imgBanner4 from '@/assets/imgs/banner4.jpg'
 import imgBanner5 from '@/assets/imgs/banner5.jpg'
-import yuntaiNotice from '@/views/detail/component/yuntai-notice/yuntaiNotice'
-import yuntaiNews from '@/views/detail/component/yuntai-news/yuntaiNews'
+import yuntaiNotice from '@/views/component/yuntai-notice/yuntaiNotice'
+import yuntaiNews from '@/views/component/yuntai-news/yuntaiNews'
 
 export default {
   data () {

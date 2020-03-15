@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Home from '@/views/home'
+import Home from '@/views/Home'
 import TabbarHome from '@/views/pages-tabbar/tabbar-home/tabbarHome'
 import TabbarVisit from '@/views/pages-tabbar/tabbar-visit/tabbarVisit'
 
