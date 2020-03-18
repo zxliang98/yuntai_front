@@ -1,15 +1,18 @@
 <template>
   <div class="home">
-    <yuntai-tab-bar></yuntai-tab-bar>
+    <yuntai-tabbar></yuntai-tabbar>
     <router-view :style="this.$route.name!=='home'?'margin-top:60px':''"></router-view>
+    <yuntai-footer></yuntai-footer>
   </div>
 </template>
 
 <script>
-import yuntaiTabBar from '@/components/yuntai-tab-bar/yuntaiTabBar'
+import yuntaiTabbar from '@/components/yuntai-tabbar/yuntaiTabbar'
+import yuntaiFooter from '@/components/yuntai-footer/yuntaiFooter'
 export default {
   components: {
-    yuntaiTabBar
+    yuntaiTabbar,
+    yuntaiFooter
   }
 }
 </script>

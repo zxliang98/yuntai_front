@@ -1,0 +1,57 @@
+.yuntai-news {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  .news-left {
+    width: 670px;
+    .left-top {
+      width: 100%;
+      height: 400px;
+      display: flex;
+      .left {
+        flex: 1;
+        height: 100%;
+      }
+      .right {
+        flex: 1;
+        height: 100%;
+        overflow: hidden;
+        .el-image {
+          width: 100%;
+          height: 100%;
+          transition: 0.5s;
+        }
+        .el-image:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+    .left-bot {
+      margin-top: 30px;
+      width: 100%;
+      height: 400px;
+      cursor: pointer;
+      .el-image {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  .news-right {
+    width: 500px;
+    .right-top {
+      width: 100%;
+      height: 300px;
+      display: flex;
+      .item {
+        flex: 1;
+        cursor: pointer;
+      }
+    }
+    .right-bot {
+      margin-top: 30px;
+      width: 100%;
+      height: 500px;
+    }
+  }
+}

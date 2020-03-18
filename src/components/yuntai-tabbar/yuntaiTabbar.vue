@@ -10,7 +10,20 @@
       >{{item.text}}</div>
     </div>
     <div class="action">
-      <i class="iconfont el-icon-user"></i>
+      <el-dropdown placement="bottom">
+        <span class="el-dropdown-link">
+          <i class="iconfont el-icon-user"></i>
+        </span>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item>
+            <span @click="login(true)">登录</span>
+          </el-dropdown-item>
+          <el-dropdown-item>
+            <span @click="login(false)">注册</span>
+          </el-dropdown-item>
+          <el-dropdown-item>退出</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
       <i class="iconfont el-icon-s-operation"></i>
     </div>
   </div>
@@ -66,6 +79,9 @@ export default {
   methods: {
     toPage (item) {
       this.$router.push(item.path)
+    },
+    login (flag) {
+      this.$router.push({ name: 'login', query: { isLogin: flag } })
     }
   },
   mounted () {
@@ -114,7 +130,7 @@ export default {
 .yuntai-tab-bar {
   width: 100%;
   height: 60px;
-  background-color: rgba(255,255,255);
+  background-color: rgba(255, 255, 255);
   display: flex;
   justify-content: space-around;
   align-items: center;

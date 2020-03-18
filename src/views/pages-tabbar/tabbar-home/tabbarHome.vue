@@ -6,12 +6,8 @@
       </el-carousel-item>
     </el-carousel>
     <div class="tabbar-home-card">
-      <div class="notice-card">
-        <yuntai-notice></yuntai-notice>
-      </div>
-      <div class="news-card">
-        <yuntai-news></yuntai-news>
-      </div>
+      <yuntai-notice class="notice-card"></yuntai-notice>
+      <yuntai-news class="news-card"></yuntai-news>
     </div>
   </div>
 </template>
@@ -58,6 +54,9 @@ export default {
     .notice-card {
       width: 100%;
       padding: 16px 0 36px;
+    }
+    .news-card {
+      margin-bottom: 30px;
     }
   }
 }
