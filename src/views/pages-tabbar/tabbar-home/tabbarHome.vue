@@ -8,6 +8,7 @@
     <div class="tabbar-home-card">
       <yuntai-notice class="notice-card"></yuntai-notice>
       <yuntai-news class="news-card"></yuntai-news>
+      <yuntai-view></yuntai-view>
     </div>
   </div>
 </template>
@@ -20,6 +21,7 @@ import imgBanner4 from '@/assets/imgs/banner4.jpg'
 import imgBanner5 from '@/assets/imgs/banner5.jpg'
 import yuntaiNotice from '@/views/component/yuntai-notice/yuntaiNotice'
 import yuntaiNews from '@/views/component/yuntai-news/yuntaiNews'
+import yuntaiView from '@/views/component/yuntai-view/yuntaiView'
 
 export default {
   data () {
@@ -29,7 +31,8 @@ export default {
   },
   components: {
     yuntaiNotice,
-    yuntaiNews
+    yuntaiNews,
+    yuntaiView
   }
 }
 </script>

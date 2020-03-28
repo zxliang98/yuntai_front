@@ -4,9 +4,19 @@
       <div class="left-top">
         <div class="left">
           <div class="title-box">
-            <div class="title">云台·资讯</div>
+            <div class="title">
+              <i class="el-icon-arrow-left"></i>
+              <span>云台 · 资讯</span>
+              <i class="el-icon-arrow-right"></i>
+            </div>
             <div class="action">更多</div>
           </div>
+          <ul class="content-box">
+            <li v-for="item in 5" :key="item">
+              <i class="el-icon-postcard"></i>
+              公告内容公告内容公告内容公告内容公告内容公告内容
+            </li>
+          </ul>
         </div>
         <div class="right">
           <el-image fit="cover" :src="importImgs.imgBanner2"></el-image>
@@ -21,38 +31,74 @@
         <div class="item">
           <div class="logo">云</div>
           <div class="info">
-            <div class="title">
-              在线预约订票
-            </div>
-            <div class="des">
-              贴心的票务服务,让您省事省力更省心
-            </div>
+            <div class="title">在线预约订票</div>
+            <div class="des">贴心的票务服务,让您省事省力更省心</div>
           </div>
         </div>
         <div class="item">
           <div class="logo">台</div>
           <div class="info">
-            <div class="title">
-              全景虚拟游览
-            </div>
-            <div class="des">
-              随时随地,为您提供身临其境的游览体验
-            </div>
+            <div class="title">全景虚拟游览</div>
+            <div class="des">随时随地,为您提供身临其境的游览体验</div>
           </div>
         </div>
         <div class="item">
           <div class="logo">山</div>
           <div class="info">
-            <div class="title">
-              景区活动
-            </div>
-            <div class="des">
-              从云台山开始,感受大自然的魅力
-            </div>
+            <div class="title">景区活动</div>
+            <div class="des">从云台山开始,感受大自然的魅力</div>
           </div>
         </div>
       </div>
-      <div class="right-bot">时间介绍</div>
+      <div class="right-bot">
+        <div class="bot-top">
+          <div class="title-box">
+            <div class="title">
+              <i class="el-icon-arrow-left"></i>
+              <span>时间 · 票务</span>
+              <i class="el-icon-arrow-right"></i>
+            </div>
+            <div class="action">更多</div>
+          </div>
+          <div class="content-box">
+            <div class="text">
+              <div>08:30</div>
+              <div>开始售票、开放进馆时间</div>
+            </div>
+            <i class="el-icon-right"></i>
+            <div class="text">
+              <div>15:30</div>
+              <div>止票时间</div>
+            </div>
+            <i class="el-icon-right"></i>
+            <div class="text">
+              <div>15:40</div>
+              <div>停止入馆时间</div>
+            </div>
+            <i class="el-icon-right"></i>
+            <div class="text">
+              <div>16:30</div>
+              <div>闭馆时间</div>
+            </div>
+          </div>
+        </div>
+        <div class="bot-bot">
+          <div class="title-box">
+            <div class="title">
+              <i class="el-icon-arrow-left"></i>
+              <span>开放 · 公告</span>
+              <i class="el-icon-arrow-right"></i>
+            </div>
+            <div class="action">更多</div>
+          </div>
+          <div class="content-box">
+            <li v-for="item in 5" :key="item">
+              <i class="el-icon-postcard"></i>
+              公告内容公告内容公告内容公告内容公告内容公告内容
+            </li>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
