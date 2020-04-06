@@ -1,18 +1,32 @@
 <template>
-  <div class="home">
+  <div class="home" @scroll="scrollHome">
     <yuntai-tabbar></yuntai-tabbar>
-    <router-view :style="this.$route.name!=='home'?'margin-top:60px':''"></router-view>
+    <router-view style="min-width:1200px" :style="this.$route.name!=='home'?'margin-top:60px':''"></router-view>
     <yuntai-footer></yuntai-footer>
+    <el-backtop target=".home"></el-backtop>
   </div>
 </template>
 
 <script>
 import yuntaiTabbar from '@/components/yuntai-tabbar/yuntaiTabbar'
 import yuntaiFooter from '@/components/yuntai-footer/yuntaiFooter'
+import { mapState, mapMutations } from 'vuex'
 export default {
   components: {
     yuntaiTabbar,
     yuntaiFooter
+  },
+  computed: {
+    ...mapState
+  },
+  methods: {
+    ...mapMutations,
+    scrollHome (e) {
+      // console.log(e.target.scrollTop)
+      // this.changeHomeScrollTop(e.target.scrollTop)
+      this.homeScrollTop = e.target.scrollTop
+      // console.log(this.homeScrollTop)
+    }
   }
 }
 </script>
@@ -25,5 +39,6 @@ export default {
   bottom: 0;
   left: 0;
   overflow: auto;
+  transition: all 1s;
 }
 </style>

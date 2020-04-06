@@ -1,5 +1,5 @@
 <template>
-  <div :class="pathName==='home'?'yuntai-tab-bar-home':'yuntai-tab-bar'">
+  <div :class="pathName==='home'?'yuntai-tabbar-home':'yuntai-tabbar'">
     <el-image :src="pathName==='home'?imgLogo:imgLogoBlue" fit="contain"></el-image>
     <div class="nav">
       <div
@@ -91,8 +91,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.yuntai-tab-bar-home {
+.yuntai-tabbar-home {
   width: 100%;
+  min-width: 1200px;
   height: 60px;
   background-color: rgba(25, 25, 25, 0.6);
   display: flex;
@@ -127,8 +128,9 @@ export default {
     }
   }
 }
-.yuntai-tab-bar {
+.yuntai-tabbar {
   width: 100%;
+  min-width: 1200px;
   height: 60px;
   background-color: rgba(255, 255, 255);
   display: flex;

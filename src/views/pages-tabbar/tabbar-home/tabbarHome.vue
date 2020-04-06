@@ -6,8 +6,8 @@
       </el-carousel-item>
     </el-carousel>
     <div class="tabbar-home-card">
-      <yuntai-notice class="notice-card"></yuntai-notice>
-      <yuntai-news class="news-card"></yuntai-news>
+      <yuntai-notice></yuntai-notice>
+      <yuntai-news></yuntai-news>
       <yuntai-view></yuntai-view>
     </div>
   </div>
@@ -39,8 +39,10 @@ export default {
 
 <style lang="less" scoped>
 .tabbar-home {
+  min-width: 1200px;
   .el-carousel {
     width: 100%;
+    min-width: 1200px;
     height: 100vh;
     background-color: #ccc;
     /deep/.el-carousel__container {
@@ -48,18 +50,22 @@ export default {
     }
     .el-image {
       width: 100vw;
+      min-width: 1200px;
       height: 100%;
     }
   }
   .tabbar-home-card {
     width: 1200px;
     margin: 0 auto;
-    .notice-card {
+    .yuntai-notice {
       width: 100%;
       padding: 16px 0 36px;
     }
-    .news-card {
-      margin-bottom: 30px;
+    .yuntai-news {
+      margin-bottom: 24px;
+    }
+    .yuntai-view {
+      margin-bottom: 24px;
     }
   }
 }

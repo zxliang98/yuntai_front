@@ -42,6 +42,7 @@ export default {
 <style lang="less" scoped>
 .yuntai-footer {
   width: 100%;
+  min-width: 1200px;
   background-color: #272727;
   color: #ffffff;
   font-size: 14px;
