@@ -1,6 +1,6 @@
 <template>
   <div class="yuntai-view">
-    <div class="item" v-for="item in list" :key="item.id">
+    <div @click="toDetail(item)" class="item" v-for="item in list" :key="item.id">
       <el-image :src="item.url"></el-image>
       <i :class="item.icon"></i>
       <span>{{item.text}}</span>
@@ -18,30 +18,39 @@ export default {
           url:
             'https://img.dpm.org.cn/Uploads/Picture/2016/11/23/s5835a5845f08b.jpg',
           icon: 'el-icon-postcard',
-          text: '最新资讯'
+          text: '最新资讯',
+          path: 'notice'
         },
         {
           id: 2,
           url:
             'https://img.dpm.org.cn/Uploads/Picture/2016/11/23/s5835a58eb4421.jpg',
           icon: 'el-icon-ship',
-          text: '景点介绍'
+          text: '景点介绍',
+          path: 'visit'
         },
         {
           id: 3,
           url:
             'https://img.dpm.org.cn/Uploads/Picture/2016/11/23/s5835a57aca965.jpg',
           icon: 'el-icon-data-line',
-          text: '经典线路'
+          text: '经典线路',
+          path: 'play'
         },
         {
           id: 4,
           url:
             'https://img.dpm.org.cn/Uploads/Picture/2016/11/23/s5835a58eb4421.jpg',
           icon: 'el-icon-chat-line-square',
-          text: '攻略美文'
+          text: '关于我们',
+          path: 'about'
         }
       ]
+    }
+  },
+  methods: {
+    toDetail (item) {
+      this.$router.push({ name: item.path })
     }
   }
 }

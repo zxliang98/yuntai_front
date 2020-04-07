@@ -73,12 +73,12 @@
             <i class="el-icon-right"></i>
             <div class="text">
               <div>15:40</div>
-              <div>停止入馆时间</div>
+              <div>停止入园时间</div>
             </div>
             <i class="el-icon-right"></i>
             <div class="text">
               <div>16:30</div>
-              <div>闭馆时间</div>
+              <div>闭园时间</div>
             </div>
           </div>
         </div>

@@ -24,7 +24,6 @@
           <el-dropdown-item>退出</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
-      <i class="iconfont el-icon-s-operation"></i>
     </div>
   </div>
 </template>
@@ -50,21 +49,16 @@ export default {
         },
         {
           id: 3,
-          text: '展览',
-          path: '/show'
+          text: '公告',
+          path: '/notice'
         },
         {
           id: 4,
-          text: '教育',
-          path: '/edu'
+          text: '游玩',
+          path: '/play'
         },
         {
           id: 5,
-          text: '文创',
-          path: '/creative'
-        },
-        {
-          id: 6,
           text: '关于',
           path: '/about'
         }

@@ -5,6 +5,9 @@ import Login from '@/views/login/login'
 import Home from '@/views/Home'
 import TabbarHome from '@/views/pages-tabbar/tabbar-home/tabbarHome'
 import TabbarVisit from '@/views/pages-tabbar/tabbar-visit/tabbarVisit'
+import TabbarNotice from '@/views/pages-tabbar/tabbar-notice/tabbarNotice'
+import TabbarPlay from '@/views/pages-tabbar/tabbar-play/tabbarPlay'
+import TabbarAbout from '@/views/pages-tabbar/tabbar-about/tabbarAbout'
 
 import Error from '@/components/yuntai-error/yuntaiError'
 
@@ -25,6 +28,21 @@ const routes = [
         name: 'visit',
         path: '/visit',
         component: TabbarVisit
+      },
+      {
+        name: 'notice',
+        path: '/notice',
+        component: TabbarNotice
+      },
+      {
+        name: 'play',
+        path: '/play',
+        component: TabbarPlay
+      },
+      {
+        name: 'about',
+        path: '/about',
+        component: TabbarAbout
       }
     ]
   },
