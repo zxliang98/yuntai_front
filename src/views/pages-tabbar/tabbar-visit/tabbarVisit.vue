@@ -1,12 +1,19 @@
 <template>
-  <div class="tabbar-visit">
+  <div ref="tabbarVisit" class="tabbar-visit">
     <div class="header">
-      <el-image :src="headerData.navImage[0]"></el-image>
+      <el-image fit="cover" :src="headerData.navImage[0]"></el-image>
     </div>
     <div class="content-item">
-      <div :class="['left',fixed?'fixed-left':'']" :style="fixed?`top:${$refs.contentItemLeft.offsetTop}`:''" ref="contentItemLeft">
-        <div :key="item.id" v-for="item in contentData" class="item">
-          <el-button :style="{color:item.code===activeId?'#ff651a':''}" @click="changeItem(item.code)" class="item-title" type="text">{{item.name}}</el-button>
+      <div class="left-rel">
+        <div :style="fixed?`position: fixed;top:80px`:''" class="left" ref="contentItemLeft">
+          <div :key="item.id" v-for="item in contentData" class="item">
+            <el-button
+              :style="{color:item.code===activeId?'#ff651a':''}"
+              @click="changeItem(item.code)"
+              class="item-title"
+              type="text"
+            >{{item.name}}</el-button>
+          </div>
         </div>
       </div>
       <div class="right">
@@ -16,11 +23,11 @@
         </div>
       </div>
     </div>
+    <yuntai-back-top :showBtn="showBtn"></yuntai-back-top>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
 export default {
   data () {
     return {
@@ -198,7 +205,8 @@ export default {
           name: '动物植物',
           summary:
             '云台山生态系统　云台山有多种食草动物，如山羊、野兔；还有一些食肉动物，如野猪、狼等；更有大型食肉动物，如豹等。这些动物，构成一种完善的捕食者食物链，即：绿色植物——食草动物（山羊、野兔等）——一级食肉动物（野猪、狼等）——二级食肉动物（豹等）。上述情况，可以推知，云台山的自然生态系统，在演化进程中，存在着完善的自然捕食者食物链，这种食物链是维持生态系统内部生态平衡、能量正常传递的物质基础，因而，也是推动自然生态系统正常演替，即推动本生态系统由青年生态系统向成熟生态系统演替的物质基础。故可推断，云台山生态系统发育良好，自然演替将是正常的。',
-          content: '<p style="font-family: 宋体, SimSun; font-size: 18px;white-space: normal; text-indent: 2em; line-height: 2em; text-align: justify;">云台山生态系统　云台山有多种食草动物，如山羊、野兔；还有一些食肉动物，如野猪、狼等；更有大型食肉动物，如豹等。这些动物，构成一种完善的捕食者食物链，即：绿色植物——食草动物（山羊、野兔等）——一级食肉动物（野猪、狼等）——二级食肉动物（豹等）。上述情况，可以推知，云台山的自然生态系统，在演化进程中，存在着完善的自然捕食者食物链，这种食物链是维持生态系统内部生态平衡、能量正常传递的物质基础，因而，也是推动自然生态系统正常演替，即推动本生态系统由青年生态系统向成熟生态系统演替的物质基础。故可推断，云台山生态系统发育良好，自然演替将是正常的。</p>',
+          content:
+            '<p style="font-family: 宋体, SimSun; font-size: 18px;white-space: normal; text-indent: 2em; line-height: 2em; text-align: justify;">云台山生态系统　云台山有多种食草动物，如山羊、野兔；还有一些食肉动物，如野猪、狼等；更有大型食肉动物，如豹等。这些动物，构成一种完善的捕食者食物链，即：绿色植物——食草动物（山羊、野兔等）——一级食肉动物（野猪、狼等）——二级食肉动物（豹等）。上述情况，可以推知，云台山的自然生态系统，在演化进程中，存在着完善的自然捕食者食物链，这种食物链是维持生态系统内部生态平衡、能量正常传递的物质基础，因而，也是推动自然生态系统正常演替，即推动本生态系统由青年生态系统向成熟生态系统演替的物质基础。故可推断，云台山生态系统发育良好，自然演替将是正常的。</p>',
           code: 'dw',
           travelTime: '',
           level: 2,
@@ -219,24 +227,11 @@ export default {
       ],
       activeId: '',
       fixed: false,
-      theTop: 0
+      showBtn: false
     }
   },
-  computed: {
-    ...mapState
-  },
-  watch: {
-    '$store.state.homeScrollTop': {
-      handler (n, o) {
-        console.log(n, this.fixed)
-        if (n > this.theTop) {
-          this.fixed = true
-          console.log(n, this.fixed)
-        }
-      },
-      immediate: true
-    }
-  },
+  computed: {},
+  watch: {},
   methods: {
     changeDate (e) {
       console.log(e)
@@ -245,29 +240,38 @@ export default {
       this.activeId = id
       const currentItem = document.getElementById(id)
       const scrollTo = currentItem.offsetTop
-      const theDoc = document.querySelector('.home')
-      // theDoc.scrollTop = scrollTo
-
-      let top = theDoc.scrollTop
-      setInterval(() => {
-        if (top < scrollTo) {
-          theDoc.scrollTop = top
-          top += scrollTo / 100
-        }
-      }, 10)
+      console.log(scrollTo)
+      const theDoc = document.documentElement
+      theDoc.scrollTop = scrollTo
+    },
+    centerNavScroll () {
+      try {
+        const scrollTop =
+          window.pageYOffset ||
+          document.documentElement.scrollTop ||
+          document.body.scrollTop
+        scrollTop > 484 ? (this.fixed = true) : (this.fixed = false)
+        scrollTop > 800 ? this.showBtn = true : this.showBtn = false
+      } catch (error) {}
     }
   },
   mounted () {
-    this.theTop = this.$refs.contentItemLeft.offsetTop
+    window.addEventListener('scroll', this.centerNavScroll)
+  },
+  beforeDestroy () {
+    window.removeEventListener('scroll', this.centerNavScroll)
   }
 }
 </script>
 
 <style lang="less" scoped>
 .tabbar-visit {
+  margin-bottom: 24px;
   .header {
+    height: 500px;
     margin-bottom: 24px;
     .el-image {
+      height: 100%;
       width: 100%;
     }
   }
@@ -277,18 +281,17 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: start;
-    position: relative;
+    .left-rel {
+      position: relative;
+    }
     .left {
       width: 230px;
       padding: 20px 30px;
       background-color: #f6f0eb;
-      .item {
-        .item-title {
-        }
-      }
-      &.fixed-left {
-        position: absolute;
-      }
+      // .item {
+      //   // .item-title {
+      //   // }
+      // }
     }
     .right {
       width: 880px;
