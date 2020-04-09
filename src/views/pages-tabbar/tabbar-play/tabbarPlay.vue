@@ -8,30 +8,99 @@
       <el-card>
         <div class="card-header" slot="header">
           <span>特色美食</span>
-          <span class="see-more">查看更多</span>
+          <span @click="seeMore(0)" class="see-more">查看更多</span>
         </div>
-        <div class="card-content">12424</div>
+        <div
+          @click="toPlayDetail(item)"
+          class="card-content"
+          v-for="item in foods"
+          :key="item.id"
+        >{{item.title}}</div>
       </el-card>
       <el-card>
         <div class="card-header" slot="header">
           <span>特产购物</span>
-          <span class="see-more">查看更多</span>
+          <span  @click="seeMore(1)" class="see-more">查看更多</span>
         </div>
-        <div class="card-content">12424</div>
+        <div
+          @click="toPlayDetail(item)"
+          class="card-content"
+          v-for="item in buys"
+          :key="item.id"
+        >{{item.title}}</div>
       </el-card>
       <el-card>
         <div class="card-header" slot="header">
           <span>休闲娱乐</span>
-          <span class="see-more">查看更多</span>
+          <span @click="seeMore(2)" class="see-more">查看更多</span>
         </div>
-        <div class="card-content">12424</div>
+        <div
+          @click="toPlayDetail(item)"
+          class="card-content"
+          v-for="item in plays"
+          :key="item.id"
+        >{{item.title}}</div>
       </el-card>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import Content from '@/http/Content'
+export default {
+  data () {
+    return {
+      foods: [],
+      buys: [],
+      plays: []
+    }
+  },
+  methods: {
+    getFoodList () {
+      Content.ContentPlayList(this, { pn: 0, pl: 10, type: 0, state: 1 }).then(
+        res => {
+          this.foods = res.data.data
+          console.log(this.news)
+        }
+      )
+    },
+    getBuyList () {
+      Content.ContentPlayList(this, { pn: 0, pl: 10, type: 1, state: 1 }).then(
+        res => {
+          this.buys = res.data.data
+          console.log(this.notice)
+        }
+      )
+    },
+    getPlayList () {
+      Content.ContentPlayList(this, { pn: 0, pl: 10, type: 2, state: 1 }).then(
+        res => {
+          this.plays = res.data.data
+          console.log(this.notice)
+        }
+      )
+    },
+    toPlayDetail (item) {
+      this.$router.push({
+        name: 'detail',
+        params: { id: item.id },
+        query: { type: 'play' }
+      })
+    },
+    seeMore (option) {
+      this.$router.push({
+        name: 'list',
+        params: { type: option },
+        query: { type: 'play' }
+      })
+    }
+  },
+  created () {
+    this.getFoodList()
+    this.getBuyList()
+    this.getPlayList()
+  }
+}
 </script>
 
 <style lang="less" scoped>
@@ -55,6 +124,10 @@ export default {}
           font-size: 14px;
           color: #409eff;
         }
+      }
+      .card-content {
+        line-height: 30px;
+        cursor: pointer;
       }
     }
   }

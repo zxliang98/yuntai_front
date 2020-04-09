@@ -1,29 +1,73 @@
 <template>
   <div class="yuntai-detail">
-    <div class="detail-box">
+    <div class="detail-box" v-if="show">
       <yuntai-breadcrumb :breadcrumb="breadcrumb"></yuntai-breadcrumb>
-      <detail-title></detail-title>
-      <detail-content></detail-content>
+      <detail-title :titleInfo="titleInfo"></detail-title>
+      <div v-html="content"></div>
     </div>
   </div>
 </template>
 
 <script>
+import Content from '@/http/Content'
 import detailTitle from './../component/detail-title/detailTitle'
-import detailContent from './../component/detail-content/detailContent'
 export default {
   data () {
     return {
-      breadcrumb: [
-        { name: '首页', path: { path: '/' } },
-        { name: '导览', path: { path: '/visit' } },
-        { name: '详情' }
-      ]
+      titleInfo: {},
+      resInfo: {},
+      content: '',
+      show: false,
+      id: 0,
+      type: ''
+    }
+  },
+  computed: {
+    breadcrumb () {
+      const bb = [{ name: '首页', path: { path: '/' } }]
+      switch (this.type) {
+        case 'view':
+          bb.push({ name: '景区', path: { path: '/view' } })
+          break
+        case 'notice':
+          bb.push({ name: '公告', path: { path: '/notice' } })
+          break
+        case 'play':
+          bb.push({ name: '游玩', path: { path: '/play' } })
+          break
+
+        default:
+          break
+      }
+      bb.push({ name: '详情' })
+      return bb
     }
   },
   components: {
-    detailTitle,
-    detailContent
+    detailTitle
+  },
+  methods: {
+    async getDetail () {
+      if (this.type === 'view') {
+        this.resInfo = await Content.ContentView(this, { id: this.id })
+      } else if (this.type === 'notice') {
+        this.resInfo = await Content.ContentNotice(this, { id: this.id })
+      } else if (this.type === 'play') {
+        this.resInfo = await Content.ContentPlay(this, { id: this.id })
+      }
+      this.titleInfo.title = this.resInfo.data.data.title
+      this.titleInfo.name = this.resInfo.data.data.userName
+      this.titleInfo.pubTime = this.resInfo.data.data.publishTime
+      this.titleInfo.userIcon =
+        'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
+      this.content = this.resInfo.data.data.content
+      this.show = true
+    }
+  },
+  created () {
+    this.id = this.$route.params.id || ''
+    this.type = this.$route.query.type || ''
+    this.getDetail()
   }
 }
 </script>

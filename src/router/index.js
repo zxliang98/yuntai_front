@@ -59,7 +59,7 @@ const routes = [
       },
       {
         name: 'list',
-        path: '/list/:id',
+        path: '/list/:type',
         component: yuntaiList
       }
     ]

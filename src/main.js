@@ -3,6 +3,8 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+import '@/http/axios'
+
 import '@/assets/css/common.less'
 
 import ElementUI from 'element-ui'
