@@ -5,8 +5,8 @@
       src="http://files001.oss-cn-shenzhen.aliyuncs.com/uploadfile/hzcloud/web/zxw/content/1495878219209/天高云飞染秋色0000.jpg"
     ></el-image>
     <div class="about-card">
-      <el-card>123</el-card>
-      <el-card>123</el-card>
+      <el-card>微博</el-card>
+      <el-card>微信</el-card>
       <baidu-map
         class="map"
         :center="{lng: 113.367424, lat: 35.4201789}"
