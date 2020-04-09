@@ -49,16 +49,21 @@ export default {
         },
         {
           id: 3,
+          text: '景区',
+          path: '/view'
+        },
+        {
+          id: 4,
           text: '公告',
           path: '/notice'
         },
         {
-          id: 4,
+          id: 5,
           text: '游玩',
           path: '/play'
         },
         {
-          id: 5,
+          id: 6,
           text: '关于',
           path: '/about'
         }
@@ -110,9 +115,13 @@ export default {
       color: #ffffff;
       cursor: pointer;
       text-align: center;
+      &:hover {
+        color: #409eff;
+      }
     }
   }
   .action {
+    width: 138px;
     .iconfont {
       color: #fff;
       font-size: 26px;
@@ -147,9 +156,13 @@ export default {
       color: #000000;
       cursor: pointer;
       text-align: center;
+      &:hover {
+        color: #409eff;
+      }
     }
   }
   .action {
+    width: 138px;
     .iconfont {
       color: #000000;
       font-size: 26px;

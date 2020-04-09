@@ -11,7 +11,9 @@ import 'element-ui/lib/theme-chalk/index.css'
 import BaiduMap from 'vue-baidu-map'
 
 import yuntaiBackTop from './components/yuntai-back-top/yuntaiBackTop'
+import yuntaiBreadcrumb from './components/yuntai-breadcrumb/yuntaiBreadcrumb'
 Vue.component('yuntai-back-top', yuntaiBackTop)
+Vue.component('yuntai-breadcrumb', yuntaiBreadcrumb)
 
 Vue.use(BaiduMap, {
   ak: '1c6h6jloEGGGaSe0TVD1XRrplaCqhszP' // 这个地方是官方提供的ak密钥

@@ -5,9 +5,12 @@ import Login from '@/views/login/login'
 import Home from '@/views/Home'
 import TabbarHome from '@/views/pages-tabbar/tabbar-home/tabbarHome'
 import TabbarVisit from '@/views/pages-tabbar/tabbar-visit/tabbarVisit'
+import TabbarView from '@/views/pages-tabbar/tabbar-view/tabbarView'
 import TabbarNotice from '@/views/pages-tabbar/tabbar-notice/tabbarNotice'
 import TabbarPlay from '@/views/pages-tabbar/tabbar-play/tabbarPlay'
 import TabbarAbout from '@/views/pages-tabbar/tabbar-about/tabbarAbout'
+import yuntaiDetail from './../views/detail/yuntai-detail/yuntaiDetail'
+import yuntaiList from './../views/detail/yuntai-list/yuntaiList'
 
 import Error from '@/components/yuntai-error/yuntaiError'
 
@@ -23,6 +26,11 @@ const routes = [
         name: 'home',
         path: '/home',
         component: TabbarHome
+      },
+      {
+        name: 'view',
+        path: '/view',
+        component: TabbarView
       },
       {
         name: 'visit',
@@ -43,6 +51,16 @@ const routes = [
         name: 'about',
         path: '/about',
         component: TabbarAbout
+      },
+      {
+        name: 'detail',
+        path: '/detail/:id',
+        component: yuntaiDetail
+      },
+      {
+        name: 'list',
+        path: '/list/:id',
+        component: yuntaiList
       }
     ]
   },
