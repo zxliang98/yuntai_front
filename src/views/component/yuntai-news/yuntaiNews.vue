@@ -12,9 +12,9 @@
             <div class="action">更多</div>
           </div>
           <ul class="content-box">
-            <li v-for="item in 5" :key="item">
+            <li v-for="item in notice" :key="item.id">
               <i class="el-icon-postcard"></i>
-              公告内容公告内容公告内容公告内容公告内容公告内容
+              {{item.title}}
             </li>
           </ul>
         </div>
@@ -92,9 +92,9 @@
             <div class="action">更多</div>
           </div>
           <div class="content-box">
-            <li v-for="item in 5" :key="item">
+            <li v-for="item in news" :key="item.id">
               <i class="el-icon-postcard"></i>
-              公告内容公告内容公告内容公告内容公告内容公告内容
+              {{item.title}}
             </li>
           </div>
         </div>
@@ -106,11 +106,42 @@
 <script>
 import imgBanner2 from '@/assets/imgs/banner2.jpg'
 import daiziMihougu from '@/assets/imgs/daizi-mihougu.jpg'
+import Content from '@/http/Content'
 export default {
   data () {
     return {
-      importImgs: { imgBanner2, daiziMihougu }
+      importImgs: { imgBanner2, daiziMihougu },
+      notice: [],
+      news: []
     }
+  },
+  methods: {
+    getNewsList () {
+      Content.ContentNoticeList(this, {
+        pn: 0,
+        pl: 5,
+        type: 1,
+        state: 1
+      }).then(res => {
+        this.news = res.data.data
+        console.log(this.news)
+      })
+    },
+    getNoticeList () {
+      Content.ContentNoticeList(this, {
+        pn: 0,
+        pl: 8,
+        type: 0,
+        state: 1
+      }).then(res => {
+        this.notice = res.data.data
+        console.log(this.notice)
+      })
+    }
+  },
+  created () {
+    this.getNewsList()
+    this.getNoticeList()
   }
 }
 </script>

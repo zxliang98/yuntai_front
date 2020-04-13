@@ -89,7 +89,12 @@ export default {
         display: flex;
         justify-content: space-between;
         padding: 8px 20px 12px;
+        .title {
+          flex: 1;
+          padding-right: 12px;
+        }
         .action {
+          width: 65px;
           cursor: pointer;
           color: #409eff;
         }
