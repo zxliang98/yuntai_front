@@ -37,7 +37,8 @@ export default {
     getViewList () {
       const params = {
         pn: 0,
-        pl: 10
+        pl: 10,
+        state: 1
       }
       Content.ContentViewList(this, params).then(res => {
         console.log(res)
