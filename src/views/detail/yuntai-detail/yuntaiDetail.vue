@@ -3,7 +3,7 @@
     <div class="detail-box" v-if="show">
       <yuntai-breadcrumb :breadcrumb="breadcrumb"></yuntai-breadcrumb>
       <detail-title :titleInfo="titleInfo"></detail-title>
-      <div v-html="content"></div>
+      <div class="content" v-html="content"></div>
     </div>
   </div>
 </template>
@@ -83,6 +83,11 @@ export default {
     padding: 24px;
     .detail-title {
       margin: 12px 0;
+    }
+    .content {
+      /deep/ pre {
+        white-space: pre-wrap;
+      }
     }
   }
 }
