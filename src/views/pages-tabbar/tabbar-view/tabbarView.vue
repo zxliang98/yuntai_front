@@ -42,7 +42,7 @@ export default {
       }
       Content.ContentViewList(this, params).then(res => {
         console.log(res)
-        this.viewList = res.data.data
+        this.viewList = res.data
       })
     },
     toViewDetail (item) {

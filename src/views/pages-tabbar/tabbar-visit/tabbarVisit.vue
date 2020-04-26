@@ -280,7 +280,7 @@ export default {
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    align-items: start;
+    align-items: flex-start;
     .left-rel {
       position: relative;
     }

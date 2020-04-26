@@ -59,7 +59,7 @@ export default {
     getFoodList () {
       Content.ContentPlayList(this, { pn: 0, pl: 10, type: 0, state: 1 }).then(
         res => {
-          this.foods = res.data.data
+          this.foods = res.data
           console.log(this.news)
         }
       )
@@ -67,7 +67,7 @@ export default {
     getBuyList () {
       Content.ContentPlayList(this, { pn: 0, pl: 10, type: 1, state: 1 }).then(
         res => {
-          this.buys = res.data.data
+          this.buys = res.data
           console.log(this.notice)
         }
       )
@@ -75,7 +75,7 @@ export default {
     getPlayList () {
       Content.ContentPlayList(this, { pn: 0, pl: 10, type: 2, state: 1 }).then(
         res => {
-          this.plays = res.data.data
+          this.plays = res.data
           console.log(this.notice)
         }
       )

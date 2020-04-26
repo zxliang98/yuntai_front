@@ -123,7 +123,7 @@ export default {
         type: 1,
         state: 1
       }).then(res => {
-        this.news = res.data.data
+        this.news = res.data
         console.log(this.news)
       })
     },
@@ -134,7 +134,7 @@ export default {
         type: 0,
         state: 1
       }).then(res => {
-        this.notice = res.data.data
+        this.notice = res.data
         console.log(this.notice)
       })
     }

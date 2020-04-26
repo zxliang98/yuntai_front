@@ -49,18 +49,21 @@ export default {
   methods: {
     async getDetail () {
       if (this.type === 'view') {
-        this.resInfo = await Content.ContentView(this, { id: this.id })
+        const res = await Content.ContentView(this, { id: this.id })
+        this.resInfo = res.data
       } else if (this.type === 'notice') {
-        this.resInfo = await Content.ContentNotice(this, { id: this.id })
+        const res = await Content.ContentNotice(this, { id: this.id })
+        this.resInfo = res.data
       } else if (this.type === 'play') {
-        this.resInfo = await Content.ContentPlay(this, { id: this.id })
+        const res = await Content.ContentPlay(this, { id: this.id })
+        this.resInfo = res.data
       }
-      this.titleInfo.title = this.resInfo.data.data.title
-      this.titleInfo.name = this.resInfo.data.data.userName
-      this.titleInfo.pubTime = this.resInfo.data.data.publishTime
+      this.titleInfo.title = this.resInfo.title
+      this.titleInfo.name = this.resInfo.userName
+      this.titleInfo.pubTime = this.resInfo.publishTime
       this.titleInfo.userIcon =
         'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
-      this.content = this.resInfo.data.data.content
+      this.content = this.resInfo.content
       this.show = true
     }
   },

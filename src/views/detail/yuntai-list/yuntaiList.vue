@@ -42,27 +42,30 @@ export default {
   methods: {
     async getList () {
       if (this.type === 'view') {
-        this.resInfo = await Content.ContentViewList(this, {
+        const res = await Content.ContentViewList(this, {
           pn: this.pn,
           pl: this.pl,
           state: 1
         })
+        this.resInfo = res.data
       } else if (this.type === 'notice') {
-        this.resInfo = await Content.ContentNoticeList(this, {
+        const res = await Content.ContentNoticeList(this, {
           pn: this.pn,
           pl: this.pl,
           state: 1,
           type: this.option
         })
+        this.resInfo = res.data
       } else if (this.type === 'play') {
-        this.resInfo = await Content.ContentPlayList(this, {
+        const res = await Content.ContentPlayList(this, {
           pn: this.pn,
           pl: this.pl,
           state: 1,
           type: this.option
         })
+        this.resInfo = res.data
       }
-      this.listInfo = this.resInfo.data.data
+      this.listInfo = this.resInfo
       console.log(this.listInfo)
     },
     async toDetail (item) {
