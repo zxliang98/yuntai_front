@@ -8,8 +8,14 @@
       <li class="friend-path" v-for="item in friendList" :key="item.id">{{item.text}}</li>
     </ul>
     <ul class="footer-friend">
-      <li>© 现在-未来 云台山景区</li>
-      <li>京ICP备01010101010号-1</li>
+      <li>© 2020-至今 云台山景区</li>
+      <li>
+        <el-link
+          style="color:#fff"
+          href="http://www.beian.miit.gov.cn/"
+          :underline="false"
+        >豫ICP备20011447号-1</el-link>
+      </li>
       <li>网站建设：黄淮信工</li>
     </ul>
     <ul class="footer-friend">
