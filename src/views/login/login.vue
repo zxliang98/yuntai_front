@@ -47,6 +47,9 @@
 </template>
 
 <script>
+import User from '@/http/User'
+import { Storage } from '@/common/tools'
+const CODE = 'abc12321cba'
 export default {
   data () {
     var checkConfirmPassward = (rule, value, callback) => {
@@ -129,6 +132,23 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           console.log(this.loginInfo)
+          const params = {
+            phone: this.loginInfo.mobile,
+            userPassword: this.loginInfo.passward
+          }
+          User.userLogin(this, params).then(res => {
+            console.log(res)
+            if (res.code === 0) {
+              Storage.setToken(res.id)
+              this.$router.push({ name: 'home' })
+            } else {
+              this.loginInfo = {
+                mobile: '',
+                passward: ''
+              }
+              return this.$message.error('用户名或密码错误')
+            }
+          })
         } else {
           console.log('error submit!!')
           return false
@@ -136,14 +156,28 @@ export default {
       })
     },
     register (formName) {
+      if (this.registerInfo.code !== CODE) {
+        return this.$message.warning('邀请码错误,请联系管理员')
+      }
       console.log(this.registerInfo)
       this.$refs[formName].validate(valid => {
         console.log(valid)
 
         if (valid) {
-          console.log(22222222222222222)
-
-          console.log(this.registerInfo)
+          const params = {
+            phone: this.registerInfo.mobile,
+            userPassword: this.registerInfo.confirmPassward
+          }
+          User.getUserInfo(this, params).then(res => {
+            if (res.id) {
+              return this.$message.warning('您已注册,请直接登录')
+            } else {
+              User.userRegister(this, params).then(res => {
+                Storage.setToken(res.id)
+                this.$router.push({ name: 'home' })
+              })
+            }
+          })
         } else {
           console.log('error submit!!')
           return false
@@ -155,7 +189,8 @@ export default {
     }
   },
   created () {
-    this.isLogin = this.$route.query.isLogin !== undefined ? this.$route.query.isLogin : true
+    this.isLogin =
+      this.$route.query.isLogin !== undefined ? this.$route.query.isLogin : true
   }
 }
 </script>

@@ -10,18 +10,14 @@
       >{{item.text}}</div>
     </div>
     <div class="action">
-      <el-dropdown placement="bottom">
+      <el-dropdown @command="command" placement="bottom">
         <span class="el-dropdown-link">
           <i class="iconfont el-icon-user"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>
-            <span @click="login(true)">登录</span>
-          </el-dropdown-item>
-          <el-dropdown-item>
-            <span @click="login(false)">注册</span>
-          </el-dropdown-item>
-          <el-dropdown-item>退出</el-dropdown-item>
+          <el-dropdown-item :command="0" v-if="!isLogin">登录</el-dropdown-item>
+          <el-dropdown-item :command="1" v-if="!isLogin">注册</el-dropdown-item>
+          <el-dropdown-item :command="2" v-if="isLogin">退出</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -29,6 +25,7 @@
 </template>
 
 <script>
+import { Storage } from '@/common/tools'
 import imgLogo from '@/assets/imgs/logo.png'
 import imgLogoBlue from '@/assets/imgs/logoblue.png'
 export default {
@@ -67,7 +64,8 @@ export default {
           text: '关于',
           path: '/about'
         }
-      ]
+      ],
+      isLogin: false
     }
   },
   computed: {
@@ -81,10 +79,23 @@ export default {
     },
     login (flag) {
       this.$router.push({ name: 'login', query: { isLogin: flag } })
+    },
+    command (c) {
+      if (c === 0) {
+        this.login(true)
+      } else if (c === 1) {
+        this.login(false)
+      } else {
+        Storage.removeToken()
+        this.isLogin = false
+      }
     }
   },
   mounted () {
     console.log(this.$route)
+  },
+  created () {
+    this.isLogin = !!Storage.getToken()
   }
 }
 </script>

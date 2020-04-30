@@ -1,6 +1,6 @@
 <template>
-  <div v-if="showBtn" class="yuntai-back-top">
-    <i @click="backTop" class="el-icon-caret-top"></i>
+  <div @click="backTop" v-if="showBtn" class="yuntai-back-top">
+    <i class="el-icon-caret-top"></i>
   </div>
 </template>
 

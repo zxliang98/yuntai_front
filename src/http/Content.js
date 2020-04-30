@@ -82,4 +82,32 @@ export default class Content {
       url: '/play'
     })
   }
+
+  /**
+   * 发布评论
+   * @param {Object} that this
+   * @param {Object} params 传参
+   */
+  static commentAdd (that, params = {}) {
+    return that.$http({
+      that,
+      method: 'post',
+      data: params,
+      url: '/comment'
+    })
+  }
+
+  /**
+   * 获取评论
+   * @param {Object} that this
+   * @param {Object} params 传参
+   */
+  static commentList (that, params = {}) {
+    return that.$http({
+      that,
+      method: 'get',
+      params: params,
+      url: '/comment'
+    })
+  }
 }

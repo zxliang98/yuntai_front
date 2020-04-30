@@ -4,6 +4,13 @@
       <yuntai-breadcrumb :breadcrumb="breadcrumb"></yuntai-breadcrumb>
       <detail-title :titleInfo="titleInfo"></detail-title>
       <div class="content" v-html="content"></div>
+      <template v-if="isLogin">
+        <yuntai-comment @commentSend="commentSend"></yuntai-comment>
+      </template>
+      <div v-else class="no-login">
+        <span @click="login" class="login">登录</span>之后才能评论
+      </div>
+      <yuntai-comment-list :commentList="commentList"></yuntai-comment-list>
     </div>
   </div>
 </template>
@@ -11,6 +18,9 @@
 <script>
 import Content from '@/http/Content'
 import detailTitle from './../component/detail-title/detailTitle'
+import yuntaiComment from './../component/yuntai-comment/yuntaiComment'
+import yuntaiCommentList from './../component/yuntai-comment-list/yuntaiCommentList'
+import { Storage } from '@/common/tools'
 export default {
   data () {
     return {
@@ -19,7 +29,11 @@ export default {
       content: '',
       show: false,
       id: 0,
-      type: ''
+      type: '',
+      commentList: [],
+      isLogin: false,
+      pn: 0,
+      pl: 10
     }
   },
   computed: {
@@ -44,7 +58,9 @@ export default {
     }
   },
   components: {
-    detailTitle
+    detailTitle,
+    yuntaiComment,
+    yuntaiCommentList
   },
   methods: {
     async getDetail () {
@@ -65,12 +81,39 @@ export default {
         'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
       this.content = this.resInfo.content
       this.show = true
+    },
+    async getDetailComment () {
+      const params = {
+        pn: this.pn,
+        pl: this.pl,
+        id: this.id,
+        type: this.type
+      }
+      const res = await Content.commentList(this, params)
+      this.commentList = res.data
+    },
+    async commentSend (comment) {
+      console.log(comment)
+      const params = {
+        comment: comment,
+        userName: '张三',
+        contentId: this.id,
+        type: this.type
+      }
+      await Content.commentAdd(this, params)
+      this.$message.success('发布成功')
+      this.getDetailComment()
+    },
+    login () {
+      this.$router.push({ name: 'login' })
     }
   },
   created () {
     this.id = this.$route.params.id || ''
     this.type = this.$route.query.type || ''
+    this.isLogin = !!Storage.getToken()
     this.getDetail()
+    this.getDetailComment()
   }
 }
 </script>
@@ -90,6 +133,21 @@ export default {
     .content {
       /deep/ pre {
         white-space: pre-wrap;
+      }
+    }
+    .yuntai-comment {
+      margin: 20px 0;
+    }
+    .no-login {
+      margin: 20px 0;
+      text-align: center;
+      .login {
+        font-weight: bold;
+        color: #409eff;
+        cursor: pointer;
+        &:hover {
+          color: #086bd1;
+        }
       }
     }
   }

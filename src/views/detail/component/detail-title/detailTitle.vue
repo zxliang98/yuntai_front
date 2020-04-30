@@ -4,12 +4,13 @@
     <div class="bot">
       <el-avatar :src="titleInfo.userIcon"></el-avatar>
       <div class="name">{{titleInfo.name}}</div>
-      <div class="time">{{titleInfo.pubTime}}</div>
+      <div class="time">{{getDataTime(titleInfo.pubTime)}}</div>
     </div>
   </div>
 </template>
 
 <script>
+import { useTimes } from '@/common/utils'
 export default {
   data () {
     return {}
@@ -18,14 +19,12 @@ export default {
     titleInfo: {
       type: Object,
       default () {
-        return {
-          title: '这个是标题',
-          userIcon: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
-          name: '这个是名字',
-          pubTime: '这个是时间'
-        }
+        return { }
       }
     }
+  },
+  methods: {
+    ...useTimes
   }
 }
 </script>
