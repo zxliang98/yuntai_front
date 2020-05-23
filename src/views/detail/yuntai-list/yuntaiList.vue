@@ -1,5 +1,5 @@
 <template>
-  <div class="yuntai-list">
+  <div class="yuntai-list" v-window-scroll:[false]="scrollLoad">
     <yuntai-breadcrumb :breadcrumb="breadcrumb"></yuntai-breadcrumb>
     <div @click="toDetail(item)" class="list-box" v-for="item in listInfo" :key="item.id">{{item.title}}</div>
   </div>
@@ -14,7 +14,8 @@ export default {
       option: 0,
       type: '',
       pn: 0,
-      pl: 10
+      pl: 10,
+      loadMoreFlag: true
     }
   },
   computed: {
@@ -65,7 +66,11 @@ export default {
         })
         this.resInfo = res.data
       }
-      this.listInfo = this.resInfo
+      this.loadMoreFlag = true
+      this.listInfo = [...this.listInfo, ...this.resInfo]
+      if (this.resInfo.length < this.pl) {
+        this.loadMoreFlag = false
+      }
       console.log(this.listInfo)
     },
     async toDetail (item) {
@@ -74,6 +79,14 @@ export default {
         params: { id: item.id },
         query: { type: this.type }
       })
+    },
+    scrollLoad () {
+      if (this.loadMoreFlag) {
+        this.loadMoreFlag = false
+        this.pn++
+        this.getList()
+        console.log(1111111111111111111111)
+      }
     }
   },
   created () {

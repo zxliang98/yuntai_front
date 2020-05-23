@@ -10,6 +10,8 @@ import '@/assets/css/common.less'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
+import './common/directive'
+
 import BaiduMap from 'vue-baidu-map'
 
 import yuntaiBackTop from './components/yuntai-back-top/yuntaiBackTop'
