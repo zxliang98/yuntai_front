@@ -21,6 +21,8 @@ import detailTitle from './../component/detail-title/detailTitle'
 import yuntaiComment from './../component/yuntai-comment/yuntaiComment'
 import yuntaiCommentList from './../component/yuntai-comment-list/yuntaiCommentList'
 import { Storage } from '@/common/tools'
+import FastScanner from 'fastscan'
+const noWord = ['法轮功']
 export default {
   data () {
     return {
@@ -93,6 +95,11 @@ export default {
       this.commentList = res.data
     },
     async commentSend (comment) {
+      var scanner = new FastScanner(noWord)
+      var offWords = scanner.search(comment)
+      if (offWords.length || !comment.trim()) {
+        return this.$message.warning('请重新输入')
+      }
       console.log(comment)
       const params = {
         comment: comment,

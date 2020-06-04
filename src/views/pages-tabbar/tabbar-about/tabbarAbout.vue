@@ -5,8 +5,12 @@
       src="http://files001.oss-cn-shenzhen.aliyuncs.com/uploadfile/hzcloud/web/zxw/content/1495878219209/天高云飞染秋色0000.jpg"
     ></el-image>
     <div class="about-card">
-      <el-card>微博</el-card>
-      <el-card>微信</el-card>
+      <el-card>
+        <el-image fit="cover" :src="weibo"></el-image>扫描关注我们的微博
+      </el-card>
+      <el-card>
+        <el-image fit="cover" :src="weixin"></el-image>扫描关注我们的微信
+      </el-card>
       <baidu-map
         class="map"
         :center="{lng: 113.367424, lat: 35.4201789}"
@@ -19,7 +23,15 @@
 </template>
 
 <script>
+import weixin from './../../../assets/imgs/gfwx.jpg'
+import weibo from './../../../assets/imgs/weibo.jpg'
 export default {
+  data () {
+    return {
+      weixin,
+      weibo
+    }
+  },
   methods: {
     getMapInfo (e) {
       console.log(e)
@@ -45,6 +57,20 @@ export default {
     .el-card {
       width: 380px;
       height: 400px;
+      /deep/.el-card__body {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    .el-image {
+      display: block;
+      width: 250px;
+      height: 250px;
+      margin-bottom: 20px;
     }
   }
 }

@@ -6,10 +6,10 @@
     ></el-image>
     <div class="notice-card">
       <el-card :body-style="{ padding: '0px' }" v-for="item in viewList" :key="item.id">
-        <el-image
+        <!-- <el-image
           fit="cover"
           src="https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg"
-        ></el-image>
+        ></el-image>-->
         <div class="bot">
           <div class="title">{{item.title}}</div>
           <div class="action" @click="toViewDetail(item)">查看详情</div>
@@ -72,6 +72,7 @@ export default {
     height: 500px;
   }
   .notice-card {
+    font-size: 30px;
     width: 1200px;
     margin: 0 auto;
     padding: 24px 0;
@@ -79,7 +80,7 @@ export default {
     flex-wrap: wrap;
     .el-card {
       width: 380px;
-      height: 380px;
+      // height: 380px;
       margin-left: 30px;
       margin-bottom: 20px;
       .el-image {
@@ -95,7 +96,7 @@ export default {
           padding-right: 12px;
         }
         .action {
-          width: 65px;
+          width: 130px;
           cursor: pointer;
           color: #409eff;
         }
@@ -107,8 +108,7 @@ export default {
     .see-more-card {
       cursor: pointer;
       text-align: center;
-      font-size: 30px;
-      line-height: 380px;
+      padding: 8px 20px 12px;
     }
   }
 }
